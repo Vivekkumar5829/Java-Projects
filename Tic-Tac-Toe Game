@@ -1,0 +1,136 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+// Creating a Board
+        char[][] board = new char[3][3];
+// Assigning the all the positions of the board as empty.
+        for(int row = 0; row < board.length; row++){
+            for(int col = 0; col < board[row].length; col++){
+                board[row][col] = ' ';
+            }
+        }
+
+//Creating the initial Scenario
+
+        char player = 'X';
+        boolean gameOver = false;
+
+// For getting inputs from the player
+        Scanner sc = new Scanner(System.in);
+
+        while (!gameOver){
+            printBoard(board);
+            System.out.print("Player" + player + "enter: " );
+            int row = sc.nextInt();
+            int col = sc.nextInt();
+            System.out.println();
+
+            if (board[row][col] == ' ') {
+                board[row][col] = player; // place the element
+                gameOver = haveWon(board, player);
+                if (gameOver) {
+                    System.out.println("Player " + player + " has won: ");
+                } else {
+                    // if (player == 'X') {
+                    // player = 'O';
+                    // } else {
+                    // player = 'X';
+                    // }
+                    player = (player == 'X') ? 'O' : 'X';
+                }
+            } else {
+                System.out.println("Invalid move. Try again!");
+            }
+            }
+        printBoard(board);
+    }
+
+// Checking the condition for Win
+
+   public static boolean haveWon(char[][] board, char player){
+
+//Checking for the rows
+        for(int row = 0; row < board.length; row++){
+            if(board[row][0] == player && board[row][1] == player && board[row][2] == player){
+                return true;
+            }
+        }
+
+//Checking for the columns
+        for(int col = 0; col < board[0].length; col++){
+            if(board[0][col] == player && board[1][col] == player && board[2][col] == player){
+                return true;
+            }
+        }
+
+// Checking for the diagonals
+        if(board[0][0] == player && board[1][1] == player && board[2][2] == player){
+            return true;
+        }
+        if(board[0][2] == player && board[1][1] == player && board[2][0] == player){
+            return true;
+        }
+        return false;
+    }
+
+    private static void printBoard(char[][] board) {
+        for(int row = 0; row < board.length; row++){
+            for(int col = 0; col < board[row].length; col++){
+                System.out.print(board[row][col] + "|");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+!Game I Played for Testing
+
+"C:\Program Files\Java\jdk-18.0.2.1\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3\lib\idea_rt.jar=52173:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.3\bin" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath "C:\Users\HP\Desktop\Tic tac toe\out\production\Tic tac toe" Main
+ | | |
+ | | |
+ | | |
+PlayerXenter: 0 1
+
+ |X| |
+ | | |
+ | | |
+PlayerOenter: 1 1
+
+ |X| |
+ |O| |
+ | | |
+PlayerXenter: 0 2
+
+ |X|X|
+ |O| |
+ | | |
+PlayerOenter: 0 0
+
+O|X|X|
+ |O| |
+ | | |
+PlayerXenter: 2 2
+
+O|X|X|
+ |O| |
+ | |X|
+PlayerOenter: 1 2
+
+O|X|X|
+ |O|O|
+ | |X|
+PlayerXenter: 2 1
+
+O|X|X|
+ |O|O|
+ |X|X|
+PlayerOenter: 1 0
+
+Player O has won: 
+O|X|X|
+O|O|O|
+ |X|X|
+
+Process finished with exit code 0
