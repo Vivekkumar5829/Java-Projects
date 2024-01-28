@@ -1,2 +1,3 @@
-# StandAloneApplication-Projects
-Stand Alone Application using Core Java
+#Java Projects 
+#Most of the resources are from Youtube and Google Search Forum.
+#
